@@ -33,7 +33,7 @@ class AppController
         editlink.click( => @showEditor(loader))
 
         @$netBox.show()
-        @$tableBox.show()
+     #   @$tableBox.show()
         $(@svg).empty()
         $('.qtip').remove()
         @renderer = new Renderer net, @svg, @table

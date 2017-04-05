@@ -163,7 +163,7 @@ class Renderer
                        '<h3>Details:</h3>'+Tableify(detail));
 
         # Add Sorting Headers
-        $(@table+' table').tablesorter()
+        #$(@table+' table').tablesorter()
 
         # Add Click-to-Scroll Handlers
         # Closure Function that executes scroll:

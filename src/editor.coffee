@@ -12,6 +12,7 @@ class Editor
             lineNumbers : true
             lineWrapping : true
         @editor.on 'keydown', (cm, e) => @onKeyDown(e)
+        @editor.on 'change', (cm ,e) => @onChange(e)
 
     reload: (@loaderFunc, loader) ->
         preset = loader.dataLoaded ? '# Enter your network definition here.\n# Use Shift+Enter to update the visualization.'
@@ -25,3 +26,9 @@ class Editor
             # This would not be possible with keymaps.
             e.preventDefault()
             @loaderFunc @editor.getValue()
+
+    onChange: (e) ->
+        if (e.origin != 'paste')
+            return
+        @editor.refresh()
+        @loaderFunc @editor.getValue()

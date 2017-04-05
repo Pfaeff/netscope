@@ -20,15 +20,20 @@ h1, h2, h3 {
     width: 100%;*/
 }
 
+#editor-column {
+    position: fixed;
+}
+
 #net-column {
     width: 100%;
+    position: relative;
+    left: 30%
 }
 
 .column {
     float: left;
     width: 30%;
     height: 100%;
-    overflow: scroll;
 }
 
 /* Editor */

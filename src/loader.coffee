@@ -33,7 +33,7 @@ class Loader
         $.get './presets/'+name+'.prototxt', (data) =>
             @load data, callback
 
-    load: (data, callback) =>
+    load: (data, callback) =>    
         @dataLoaded = data
         net = @parser.parse data
         if not _.isUndefined(callback)

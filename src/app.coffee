@@ -61,7 +61,7 @@ class AppController
             $.getScript 'assets/js/lib/codemirror.min.js', =>
                 @netEditor = new Editor(@makeLoader(loader.load, loader), loader)
         else
-            @netEditor.reload(loader.load, loader)
+            @netEditor.reload(@makeLoader(loader.load, loader), loader)
 
     setupErrorHandler: ->
         window.onerror = (message, filename, lineno, colno, e) =>

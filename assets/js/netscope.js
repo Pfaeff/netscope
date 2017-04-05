@@ -16677,7 +16677,7 @@ module.exports = AppController = (function() {
         };
       })(this));
     } else {
-      return this.netEditor.reload(loader.load, loader);
+      return this.netEditor.reload(this.makeLoader(loader.load, loader), loader);
     }
   };
 

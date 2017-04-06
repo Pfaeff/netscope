@@ -16829,6 +16829,10 @@ module.exports = CaffeParser = (function() {
   CaffeParser.parse = function(txt, phase) {
     var NetworkAnalyzer, header, layerDesc, layers, network, ref;
     ref = Parser.parse(txt), header = ref[0], layerDesc = ref[1];
+    if (!(header.name != null)) {
+      layerDesc.unshift(header);
+      header = {};
+    }
     if ((layerDesc[0].input_dim != null) || (layerDesc[0].input_shape != null)) {
       _.extend(header, layerDesc[0]);
     }
@@ -18565,8 +18569,7 @@ module.exports = Editor = (function() {
     if (e.origin !== 'paste') {
       return;
     }
-    this.editor.refresh();
-    return this.loaderFunc(this.editor.getValue());
+    return this.editor.refresh();
   };
 
   return Editor;

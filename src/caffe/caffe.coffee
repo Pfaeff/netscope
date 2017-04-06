@@ -94,13 +94,26 @@ class CaffeParser
     @parse : (txt, phase) ->
         [header, layerDesc] = Parser.parse txt
         # check if the header is an actual header or just another layer, because no header was specified
-        if !(header.name?)
+        if not header.name?
             layerDesc.unshift header
             header = {}
 
+        console.log header            
+        console.log layerDesc
+
         # extract input_shape field from layerDesc to header
-        if layerDesc[0].input_dim? or layerDesc[0].input_shape?
-            _.extend(header,layerDesc[0])
+        if layerDesc[0].input?
+            _.extend(header, layerDesc[0])
+            if layerDesc[1].input_dim? or layerDesc[1].input_shape?
+                _.extend(header, layerDesc[1])
+        else
+            if layerDesc[0].input_dim? or layerDesc[0].input_shape?
+                _.extend(header, layerDesc[0])
+
+        console.log "-----------------------"
+        console.log header            
+        console.log layerDesc        
+
         layers = generateLayers layerDesc, phase
         network = generateNetwork layers, header
         NetworkAnalyzer = new Analyzer()

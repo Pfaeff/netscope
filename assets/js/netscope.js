@@ -16829,13 +16829,25 @@ module.exports = CaffeParser = (function() {
   CaffeParser.parse = function(txt, phase) {
     var NetworkAnalyzer, header, layerDesc, layers, network, ref;
     ref = Parser.parse(txt), header = ref[0], layerDesc = ref[1];
-    if (!(header.name != null)) {
+    if (header.name == null) {
       layerDesc.unshift(header);
       header = {};
     }
-    if ((layerDesc[0].input_dim != null) || (layerDesc[0].input_shape != null)) {
+    console.log(header);
+    console.log(layerDesc);
+    if (layerDesc[0].input != null) {
       _.extend(header, layerDesc[0]);
+      if ((layerDesc[1].input_dim != null) || (layerDesc[1].input_shape != null)) {
+        _.extend(header, layerDesc[1]);
+      }
+    } else {
+      if ((layerDesc[0].input_dim != null) || (layerDesc[0].input_shape != null)) {
+        _.extend(header, layerDesc[0]);
+      }
     }
+    console.log("-----------------------");
+    console.log(header);
+    console.log(layerDesc);
     layers = generateLayers(layerDesc, phase);
     network = generateNetwork(layers, header);
     NetworkAnalyzer = new Analyzer();

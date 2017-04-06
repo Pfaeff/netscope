@@ -98,9 +98,6 @@ class CaffeParser
             layerDesc.unshift header
             header = {}
 
-        console.log header            
-        console.log layerDesc
-
         # extract input_shape field from layerDesc to header
         if layerDesc[0].input?
             _.extend(header, layerDesc[0])
@@ -108,11 +105,7 @@ class CaffeParser
                 _.extend(header, layerDesc[1])
         else
             if layerDesc[0].input_dim? or layerDesc[0].input_shape?
-                _.extend(header, layerDesc[0])
-
-        console.log "-----------------------"
-        console.log header            
-        console.log layerDesc        
+                _.extend(header, layerDesc[0]) 
 
         layers = generateLayers layerDesc, phase
         network = generateNetwork layers, header

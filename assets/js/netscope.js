@@ -16833,8 +16833,6 @@ module.exports = CaffeParser = (function() {
       layerDesc.unshift(header);
       header = {};
     }
-    console.log(header);
-    console.log(layerDesc);
     if (layerDesc[0].input != null) {
       _.extend(header, layerDesc[0]);
       if ((layerDesc[1].input_dim != null) || (layerDesc[1].input_shape != null)) {
@@ -16845,9 +16843,6 @@ module.exports = CaffeParser = (function() {
         _.extend(header, layerDesc[0]);
       }
     }
-    console.log("-----------------------");
-    console.log(header);
-    console.log(layerDesc);
     layers = generateLayers(layerDesc, phase);
     network = generateNetwork(layers, header);
     NetworkAnalyzer = new Analyzer();

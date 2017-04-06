@@ -31,4 +31,4 @@ class Editor
         if (e.origin != 'paste')
             return
         @editor.refresh()
-        @loaderFunc @editor.getValue()
+        #@loaderFunc @editor.getValue()

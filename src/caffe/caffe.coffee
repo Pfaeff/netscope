@@ -5,6 +5,7 @@ Analyzer = require '../analyzer.coffee'
 generateLayers = (descriptors, phase) ->
     phase ?= 'train'
     layers = []
+
     for entry in descriptors
         # Support the deprecated Caffe 'layers' key as well.
         layerDesc = entry.layer or entry.layers
@@ -16,9 +17,11 @@ generateLayers = (descriptors, phase) ->
             layers.push layer
         else
             console.log 'Unidentified entry ignored: ', entry
+
     layers = _.filter layers, (layer) ->
         layerPhase = layer.attribs.include?.phase
         not (layerPhase? and layerPhase!=phase)
+
     return layers
 
 generateNetwork = (layers, header) ->
@@ -90,6 +93,11 @@ module.exports =
 class CaffeParser
     @parse : (txt, phase) ->
         [header, layerDesc] = Parser.parse txt
+        # check if the header is an actual header or just another layer, because no header was specified
+        if !(header.name?)
+            layerDesc.unshift header
+            header = {}
+
         # extract input_shape field from layerDesc to header
         if layerDesc[0].input_dim? or layerDesc[0].input_shape?
             _.extend(header,layerDesc[0])

@@ -16545,6 +16545,9 @@ module.exports = Analyzer = (function() {
           d.hOut = d.hIn;
           d.chOut = d.chIn;
           break;
+        case "python":
+          null;
+          break;
         default:
           onerror('Unknown Layer: ' + layertype);
           console.log(n);

@@ -360,9 +360,11 @@ class Analyzer
                     # --none
                     #memory
                     # --none
-                
+
+                when "python"
+                    null
                 else # unknown layer;  print error message;
-                    onerror('Unknown Layer: '+layertype)
+                    onerror('Unknown Layer: '+ layertype)
                     console.log(n)
                     debugger;
 

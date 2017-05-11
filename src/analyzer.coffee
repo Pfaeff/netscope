@@ -228,7 +228,7 @@ class Analyzer
                     #memory
                     d.mem.activation = d.wOut*d.hOut*d.chOut
                     
-                when "softmax", "softmaxwithloss", "softmax_loss"
+                when "softmax", "softmaxwithloss", "sigmoidcrossentropyloss", "softmax_loss"
                     #dimensions
                     d.wIn = parent.wOut
                     d.hIn = parent.hOut

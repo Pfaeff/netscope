@@ -16445,6 +16445,7 @@ module.exports = Analyzer = (function() {
           break;
         case "softmax":
         case "softmaxwithloss":
+        case "sigmoidcrossentropyloss":
         case "softmax_loss":
           d.wIn = parent.wOut;
           d.hIn = parent.hOut;
@@ -19142,7 +19143,7 @@ module.exports = Renderer = (function() {
       areatbl = [];
       for (k = 0, len1 = detail.length; k < len1; k++) {
         entry = detail[k];
-        if (!(entry.type === "Convolution" || entry.type === "Concat" || entry.type === "SoftmaxWithLoss" || entry.type === "innerproduct")) {
+        if (!(entry.type === "Convolution" || entry.type === "Concat" || entry.type === "SoftmaxWithLoss" || entry.type === "SigmoidCrossEntropyLoss" || entry.type === "innerproduct")) {
           continue;
         }
         dim_in = (ref1 = entry.dim_in) != null ? ref1.split("x").pop() : void 0;
